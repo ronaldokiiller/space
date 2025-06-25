@@ -1,8 +1,11 @@
 from django.urls import path
-from galeria.views import index, imagem
+from . import views
 
 urlpatterns = [
-    path('', index, name='home'),
-    path('imagem/', imagem, name='imagem')
+    path('', views.lista_imagens, name='lista_imagens'),# incluido para ajustar o ReverseMatch
+    path('imagem/', views.imagem, name='imagem'),
+    path('nova/', views.criar_imagem, name='criar_imagem'),
+    path('editar/<int:pk>/', views.editar_imagem, name='editar_imagem'),
+    path('deletar/<int:pk>/', views.deletar_imagem, name='deletar_imagem'),
 
 ]

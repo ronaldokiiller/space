@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+        <h1>Minhas Imagens</h1>
+        <a href="{% url 'criar_imagem' %}">Adicionar nova imagem</a>
+        <a href="{% url 'home' %}">Voltar para Home</a>
+        <a href="{% url 'logout' %}">Sair</a>
+        <ul>
+            {% for img in imagens %}
+                <li>
+                    <img src="{{ img.imagem.url }}" width="2000" alt="{{ img.titulo }}">
+                    <b>{{ img.titulo }}</b>
+                    <a href="{% url 'editar_imagem' img.pk %}">Editar</a> |
+                    <a href="{% url 'deletar_imagem' img.pk %}">Deletar</a>
+                </li>
+            {% empty %}
+                <li>Nenhuma imagem cadastrada.</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

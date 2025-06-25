@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Bem-vindo à Galeria!</h1>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'lista_imagens' %}">Minha Galeria</a></li>
+                <li><a href="{% url 'criar_imagem' %}">Adicionar Nova Imagem</a></li>
+                {% if user.is_staff %}
+                    <li><a href="/admin/">Administração (superuser)</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <!-- Se quiser mostrar o admin para não logados, pode descomentar abaixo -->
+                <!-- <li><a href="/admin/">Administração (superuser)</a></li> -->
+            {% endif %}
+        </ul>
+    </nav>
+    <h2>Imagens Salvas</h2>
+    <ul>
+    {% for img in imagens %}
+        <li>
+            <img src="{{ img.imagem.url }}" width="200" alt="{{ img.titulo }}">
+            <b>{{ img.titulo }}</b>
+            <p>{{ img.descricao }}</p>
+        </li>
+    {% empty %}
+        <li>Nenhuma imagem cadastrada.</li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>

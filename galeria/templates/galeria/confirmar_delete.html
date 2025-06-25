@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+    <form method="post">
+        {% csrf_token %}
+        <p>Tem certeza que deseja deletar "{{ imagem.titulo }}"?</p>
+        <button type="submit">Sim, deletar</button>
+        <a href="{% url 'lista_imagens' %}">Cancelar</a>
+    </form>
+
+    </body>
+</html>
